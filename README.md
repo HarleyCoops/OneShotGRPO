@@ -2,6 +2,12 @@
 
 This Colab notebook ([Open In Colab](https://colab.research.google.com/github/HarleyCoops/OneShotGRPO/blob/main/PublicWorkingGRPO.ipynb)) demonstrates how to train a small language model (Qwen 0.5b) on a math dataset (GSM8K) using Reinforcement Learning (RL), specifically the Generative Reinforcement Policy Optimization (GRPO) algorithm.  It's a more comprehensive and functional version of the [GRPO demo](https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb) by Will Brown, addressing some of the common difficulties in setting up a complete GRPO training pipeline.
 
+This version has two parts: the Colab notebook and the single python script here in the repo. You need to connect the Collab notebook to a single A100. This took about 60 compute units which is at most $7.50 USD depending upon your subscription. 
+
+After you run the collab notebook, just use the python script to call back to your model name and that is it. You are running inference in your own model in about 3 hours for about $10; all complete with a full Weights and Biases dataset along with a Hugging Face deployment and almost free inference. 
+
+You can even use this as a cheap way to generate your own sythetic datasets as the python script saves down a JSONL of your query and all the reasoning. 
+
 
 **Key Features and Goals:**
 
