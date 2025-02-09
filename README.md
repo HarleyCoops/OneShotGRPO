@@ -1,6 +1,7 @@
 # Working Qwen 0.5b on GRPO: Training a Small Math Reasoner with RL
 
-This Colab notebook ([Open In Colab](https://colab.research.google.com/github/HarleyCoops/OneShotGRPO/blob/main/PublicWorkingGRPO.ipynb)) demonstrates how to train a small language model (Qwen 0.5b) on a math dataset (GSM8K) using Reinforcement Learning (RL), specifically the Generative Reinforcement Policy Optimization (GRPO) algorithm.  It's a more comprehensive and functional version of the [GRPO demo](https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb) by Will Brown, addressing some of the common difficulties in setting up a complete GRPO training pipeline.
+This Colab notebook ([Open In Colab](https://colab.research.google.com/drive/1AkhgODXMM5ZrOmJgq0bLThsaabFUsh2i?usp=sharing)) demonstrates how to train a small language model (Qwen 0.5b) on a math dataset (GSM8K) using Reinforcement Learning (RL), specifically the Generative Reinforcement Policy Optimization (GRPO) algorithm.  It's a more comprehensive and functional version of the [GRPO demo](https://gist.github.com/willccbb/4676755236bb08cab5f4e54a0475d6fb) by Will Brown, addressing some of the common difficulties in setting up a complete GRPO training pipeline.
+
 
 **Key Features and Goals:**
 
