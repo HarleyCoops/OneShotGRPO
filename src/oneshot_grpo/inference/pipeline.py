@@ -3,8 +3,13 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Iterable, Optional
+
+os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
+os.environ.setdefault("TRANSFORMERS_NO_TENSORFLOW", "1")
+os.environ.setdefault("USE_TF", "0")
 
 from transformers import pipeline
 

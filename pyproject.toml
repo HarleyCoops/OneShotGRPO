@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oneshot-grpo"
+version = "0.1.0"
+description = "Modular GRPO training utilities for math reasoning experiments."
+readme = "README2.md"
+authors = [{name = "Harley Cooper"}]
+requires-python = ">=3.10"
+dependencies = [
+    "datasets>=2.18.0",
+    "transformers>=4.38.0",
+    "trl>=0.10.0",
+    "wandb>=0.16.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

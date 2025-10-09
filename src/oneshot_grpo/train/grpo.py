@@ -28,7 +28,7 @@ def build_grpo_trainer(
         model=model_name,
         reward_funcs=reward_funcs,
         train_dataset=train_dataset,
-        config=config,
+        args=config,
         **(trainer_kwargs or {}),
     )
     return TrainingArtifacts(trainer=trainer, config=config)

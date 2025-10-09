@@ -1,0 +1,4 @@
+datasets>=2.18.0
+transformers>=4.38.0
+trl>=0.10.0
+wandb>=0.16.0
