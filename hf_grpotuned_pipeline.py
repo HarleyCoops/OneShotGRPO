@@ -1,51 +1,70 @@
-import sys
-import json
-from transformers import pipeline
+from __future__ import annotations
 
-def generate_math_solution(prompt, max_new_tokens=6000, temperature=1.0):
-    """
-    Uses a high-level transformers pipeline to generate a math problem solution using the GRPOtuned model.
-    
-    The GRPOtuned model is expected to output reasoning steps and a final answer in an XML format.
-    
-    Parameters:
-      prompt (str): The input text prompt containing the math problem.
-      max_new_tokens (int): Maximum number of tokens to generate. Default is 6000.
-      temperature (float): Temperature for generation. Default is 1.2.
-      
-    Returns:
-      str: The generated output.
-    """
-    # Create a text generation pipeline for the GRPOtuned model
-    text_gen_pipe = pipeline("text-generation", model="HarleyCooper/GRPOtuned")
-    # Generate output from the prompt
-    output = text_gen_pipe(prompt, max_new_tokens=max_new_tokens, temperature=temperature)
-    # Assuming the output is a list of dicts with the key 'generated_text'
-    return output[0]['generated_text']
+import argparse
+from pathlib import Path
 
-def save_result_to_jsonl(prompt, generated_output, filename="math_results.jsonl"):
-    """
-    Saves the prompt and the generated output to a JSONL file.
-    
-    Parameters:
-      prompt (str): The math problem prompt.
-      generated_output (str): The full generated output from the model.
-      filename (str): The file path to save the JSONL entries. Default is "math_results.jsonl".
-    """
-    result = {
-        "prompt": prompt,
-        "generated_output": generated_output
-    }
-    with open(filename, "a", encoding="utf-8") as f:
-        f.write(json.dumps(result) + "\n")
+from oneshot_grpo.inference.pipeline import (
+    DEFAULT_MODEL_ID,
+    build_text_generator,
+    generate_math_solution,
+    save_prompt_and_response,
+)
 
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        prompt = " ".join(sys.argv[1:])
-    else:
-        prompt = input("Enter a math problem: ")
-    solution = generate_math_solution(prompt)
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Run inference with the GRPO-tuned math model.",
+    )
+    parser.add_argument(
+        "prompt",
+        nargs="*",
+        help="Math prompt to solve. If omitted, the prompt is read from stdin.",
+    )
+    parser.add_argument(
+        "--model",
+        default=DEFAULT_MODEL_ID,
+        help="Model identifier to load from Hugging Face Hub.",
+    )
+    parser.add_argument(
+        "--max-new-tokens",
+        type=int,
+        default=6000,
+        help="Maximum number of tokens to generate.",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=1.0,
+        help="Sampling temperature.",
+    )
+    parser.add_argument(
+        "--output-jsonl",
+        default="math_results.jsonl",
+        help="Path to the JSONL file where prompts and answers will be appended.",
+    )
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    prompt = " ".join(args.prompt) if args.prompt else input("Enter a math problem: ")
+    generator = build_text_generator(model_id=args.model)
+    solution = generate_math_solution(
+        prompt,
+        generator=generator,
+        max_new_tokens=args.max_new_tokens,
+        temperature=args.temperature,
+    )
     print("Generated Output:")
     print(solution)
-    save_result_to_jsonl(prompt, solution)
-    print("Result saved to math_results.jsonl")
+    save_prompt_and_response(
+        prompt,
+        solution,
+        path=Path(args.output_jsonl),
+        extra={"model": args.model},
+    )
+    print(f"Result saved to {args.output_jsonl}")
+
+
+if __name__ == "__main__":
+    main()

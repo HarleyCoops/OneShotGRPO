@@ -1,0 +1,11 @@
+# Default GRPO configuration for math reasoning tasks
+model_name: Qwen/Qwen2.5-0.5B-Instruct
+generator:
+  num_generations: 16
+  max_prompt_length: 512
+  max_completion_length: 1024
+rewards:
+  weights:
+    correctness: 1.0
+    numeric: 0.1
+    xml: 0.1

@@ -1,0 +1,28 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.13.4",
+  "startedAt": "2025-10-09T20:39:07.715756Z",
+  "program": "c:\\Users\\chris\\OneShotGRPO\\PublicWorkingGRPO copy.ipynb",
+  "codePath": "PublicWorkingGRPO copy.ipynb",
+  "codePathLocal": "PublicWorkingGRPO copy.ipynb",
+  "git": {
+    "remote": "https://github.com/HarleyCoops/OneShotGRPO.git",
+    "commit": "8ead0e387198535ebf757641144cd12c9fac42e0"
+  },
+  "email": "christian.cooper.us@gmail.com",
+  "root": "c:\\Users\\chris\\OneShotGRPO",
+  "host": "PC",
+  "executable": "c:\\Users\\chris\\OneShotGRPO\\.venv\\Scripts\\python.exe",
+  "cpu_count": 12,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "1004769636352",
+      "used": "809245368320"
+    }
+  },
+  "memory": {
+    "total": "16749838336"
+  },
+  "writerId": "s426mlsmqo78tj8csgpzvc822hctode6"
+}
